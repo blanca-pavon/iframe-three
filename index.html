@@ -1,2 +1,109 @@
-<div class="iactiveImg" data-ii="61064"></div>
-<script src="https://interactive-img.com/js/include.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Image</title>
+    <style>
+        /* Full screen setup */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* Hide global scrollbars */
+        }
+
+        /* Image container with vertical scroll */
+        .image-container {
+            position: relative;
+            width: 100vw; /* 100% of the viewport width */
+            height: 100vh; /* 100% of the viewport height */
+            overflow-y: auto; /* Vertical scrolling enabled */
+            overflow-x: hidden; /* Disable horizontal scrolling */
+        }
+
+        img {
+            width: 100%; /* Ensure the image fits the full width */
+            height: auto; /* Maintain aspect ratio and allow height to grow */
+        }
+
+        /* Style for the clickable dot */
+        .dot {
+            position: absolute;
+            top: 10px; /* Slightly away from the top-left corner */
+            left: 10px; /* Slightly away from the top-left corner */
+            width: 25px;
+            height: 25px;
+            background-color: #003399; /* Updated to the requested color */
+            border-radius: 50%;
+            cursor: pointer;
+            animation: beat 1.5s infinite; /* Beating animation */
+        }
+
+        /* Keyframes for the dot's beating animation */
+        @keyframes beat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.3);
+            }
+        }
+
+        /* Style for the popup text box */
+        .popup {
+            display: none;
+            position: absolute;
+            top: 50px; /* Adjusted relative to the dot */
+            left: 50px; /* Adjusted relative to the dot */
+            background-color: white;
+            padding: 15px;
+            border: 2px solid black;
+            border-radius: 8px;
+            width: 250px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif; /* Updated font */
+        }
+
+        .popup.active {
+            display: block; /* Show the popup when active */
+        }
+
+        /* Title and text styles */
+        .popup-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .popup-text {
+            font-size: 18px; /* Updated font size to 18px */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="image-container">
+        <img src="https://github.com/blanca-pavon/iframe-three/blob/main/output%20voltages%20during%20testing.png?raw=true" alt="Interactive Image">
+        <div class="dot" onclick="togglePopup()"></div>
+        <div class="popup" id="popup">
+            <div class="popup-title">ANALYSIS OF RESULTS</div>
+            <div class="popup-text">
+                From the tests, it has been seen that the second output (Vo2) works properly and gives a suitable output most of the time. <br />
+                <br />
+                On the other hand, even though at the beginning the first output (Vo1) appeared to work well, this changed along the course of the testing process, as it can be seen in the figure. <br />
+                <br />
+                Once all the tests were finalised, the first thoughts were that there appeared to be a problem with the regulation of the first output using the potentiometers. However, after a careful revision of the PPU prototype, it was found that the ferrite transformer arrived at a saturation point due to a non-desired capacitive coupling that also affected one of the diodes. <br />
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript to toggle the popup
+        function togglePopup() {
+            var popup = document.getElementById("popup");
+            popup.classList.toggle("active"); // Toggles the active class on the popup
+        }
+    </script>
+
+</body>
+</html>
